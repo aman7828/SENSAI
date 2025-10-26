@@ -25,18 +25,21 @@ export default function QuizList({ assessments }) {
 
   return (
     <>
-      <Card>
+      <Card className="bg-lime-50/90 border border-lime-200 shadow-sm">
         <CardHeader>
           <div className="flex items-center justify-between">
             <div>
-              <CardTitle className="gradient-title text-3xl md:text-4xl">
+              <CardTitle className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-lime-600 via-emerald-500 to-teal-400 drop-shadow-md">
                 Recent Quizzes
               </CardTitle>
-              <CardDescription>
+              <CardDescription className="text-[#1b3c2e]/80">
                 Review your past quiz performance
               </CardDescription>
             </div>
-            <Button onClick={() => router.push("/interview/mock")}>
+            <Button
+              onClick={() => router.push("/interview/mock")}
+              className="bg-lime-600 hover:bg-lime-700 text-white"
+            >
               Start New Quiz
             </Button>
           </div>
@@ -46,14 +49,14 @@ export default function QuizList({ assessments }) {
             {assessments?.map((assessment, i) => (
               <Card
                 key={assessment.id}
-                className="cursor-pointer hover:bg-muted/50 transition-colors"
+                className="cursor-pointer hover:bg-lime-100 transition-colors border border-lime-200 shadow-sm"
                 onClick={() => setSelectedQuiz(assessment)}
               >
                 <CardHeader>
-                  <CardTitle className="gradient-title text-2xl">
+                  <CardTitle className="text-2xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-lime-600 via-emerald-500 to-teal-400 drop-shadow-sm">
                     Quiz {i + 1}
                   </CardTitle>
-                  <CardDescription className="flex justify-between w-full">
+                  <CardDescription className="flex justify-between w-full text-[#1b3c2e]/80">
                     <div>Score: {assessment.quizScore.toFixed(1)}%</div>
                     <div>
                       {format(
@@ -65,7 +68,7 @@ export default function QuizList({ assessments }) {
                 </CardHeader>
                 {assessment.improvementTip && (
                   <CardContent>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm text-[#1b3c2e]/70">
                       {assessment.improvementTip}
                     </p>
                   </CardContent>
@@ -77,9 +80,9 @@ export default function QuizList({ assessments }) {
       </Card>
 
       <Dialog open={!!selectedQuiz} onOpenChange={() => setSelectedQuiz(null)}>
-        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto bg-lime-50/90 border border-lime-200">
           <DialogHeader>
-            <DialogTitle></DialogTitle>
+            <DialogTitle className="text-[#1b3c2e]">Quiz Details</DialogTitle>
           </DialogHeader>
           <QuizResult
             result={selectedQuiz}

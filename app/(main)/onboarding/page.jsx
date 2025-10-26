@@ -12,7 +12,7 @@ export default async function OnboardingPage() {
   }
 
   return (
-    <main>
+    <main className="bg-olive-50 min-h-screen">
       <OnboardingForm industries={industries} />
     </main>
   );

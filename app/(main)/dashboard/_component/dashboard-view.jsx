@@ -29,7 +29,6 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 
 const DashboardView = ({ insights }) => {
-  // Transform salary data for the chart
   const salaryData = insights.salaryRanges.map((range) => ({
     name: range.role,
     min: range.min / 1000,
@@ -40,9 +39,9 @@ const DashboardView = ({ insights }) => {
   const getDemandLevelColor = (level) => {
     switch (level.toLowerCase()) {
       case "high":
-        return "bg-green-500";
+        return "bg-green-600";
       case "medium":
-        return "bg-yellow-500";
+        return "bg-olive-600";
       case "low":
         return "bg-red-500";
       default:
@@ -53,9 +52,9 @@ const DashboardView = ({ insights }) => {
   const getMarketOutlookInfo = (outlook) => {
     switch (outlook.toLowerCase()) {
       case "positive":
-        return { icon: TrendingUp, color: "text-green-500" };
+        return { icon: TrendingUp, color: "text-green-600" };
       case "neutral":
-        return { icon: LineChart, color: "text-yellow-500" };
+        return { icon: LineChart, color: "text-olive-600" };
       case "negative":
         return { icon: TrendingDown, color: "text-red-500" };
       default:
@@ -66,7 +65,6 @@ const DashboardView = ({ insights }) => {
   const OutlookIcon = getMarketOutlookInfo(insights.marketOutlook).icon;
   const outlookColor = getMarketOutlookInfo(insights.marketOutlook).color;
 
-  // Format dates using date-fns
   const lastUpdatedDate = format(new Date(insights.lastUpdated), "dd/MM/yyyy");
   const nextUpdateDistance = formatDistanceToNow(
     new Date(insights.nextUpdate),
@@ -83,9 +81,7 @@ const DashboardView = ({ insights }) => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">
-              Market Outlook
-            </CardTitle>
+            <CardTitle className="text-sm font-medium">Market Outlook</CardTitle>
             <OutlookIcon className={`h-4 w-4 ${outlookColor}`} />
           </CardHeader>
           <CardContent>
@@ -98,15 +94,11 @@ const DashboardView = ({ insights }) => {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">
-              Industry Growth
-            </CardTitle>
-            <TrendingUp className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium">Industry Growth</CardTitle>
+            <TrendingUp className="h-4 w-4 text-olive-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">
-              {insights.growthRate.toFixed(1)}%
-            </div>
+            <div className="text-2xl font-bold">{insights.growthRate.toFixed(1)}%</div>
             <Progress value={insights.growthRate} className="mt-2" />
           </CardContent>
         </Card>
@@ -129,7 +121,7 @@ const DashboardView = ({ insights }) => {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Top Skills</CardTitle>
-            <Brain className="h-4 w-4 text-muted-foreground" />
+            <Brain className="h-4 w-4 text-olive-600" />
           </CardHeader>
           <CardContent>
             <div className="flex flex-wrap gap-1">
@@ -189,15 +181,13 @@ const DashboardView = ({ insights }) => {
         <Card>
           <CardHeader>
             <CardTitle>Key Industry Trends</CardTitle>
-            <CardDescription>
-              Current trends shaping the industry
-            </CardDescription>
+            <CardDescription>Current trends shaping the industry</CardDescription>
           </CardHeader>
           <CardContent>
             <ul className="space-y-4">
               {insights.keyTrends.map((trend, index) => (
                 <li key={index} className="flex items-start space-x-2">
-                  <div className="h-2 w-2 mt-2 rounded-full bg-primary" />
+                  <div className="h-2 w-2 mt-2 rounded-full bg-olive-600" />
                   <span>{trend}</span>
                 </li>
               ))}

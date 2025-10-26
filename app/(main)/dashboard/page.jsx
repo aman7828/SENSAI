@@ -7,7 +7,6 @@ export default async function DashboardPage() {
   const { isOnboarded } = await getUserOnboardingStatus();
 
   // If not onboarded, redirect to onboarding page
-  // Skip this check if already on the onboarding page
   if (!isOnboarded) {
     redirect("/onboarding");
   }
@@ -15,8 +14,9 @@ export default async function DashboardPage() {
   const insights = await getIndustryInsights();
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto bg-olive-50 min-h-screen px-4 py-6">
       <DashboardView insights={insights} />
     </div>
   );
 }
+

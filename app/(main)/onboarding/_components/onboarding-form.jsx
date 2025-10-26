@@ -76,8 +76,8 @@ const OnboardingForm = ({ industries }) => {
   const watchIndustry = watch("industry");
 
   return (
-    <div className="flex items-center justify-center bg-background">
-      <Card className="w-full max-w-lg mt-10 mx-2">
+    <div className="flex items-center justify-center bg-olive-50 min-h-screen">
+      <Card className="w-full max-w-lg mt-10 mx-2 bg-olive-900 text-olive-50 border-olive-700">
         <CardHeader>
           <CardTitle className="gradient-title text-4xl">
             Complete Your Profile
@@ -100,10 +100,10 @@ const OnboardingForm = ({ industries }) => {
                   setValue("subIndustry", "");
                 }}
               >
-                <SelectTrigger id="industry">
+                <SelectTrigger id="industry" className="bg-olive-800 text-olive-50">
                   <SelectValue placeholder="Select an industry" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-olive-900 text-olive-50">
                   <SelectGroup>
                     <SelectLabel>Industries</SelectLabel>
                     {industries.map((ind) => (
@@ -115,9 +115,7 @@ const OnboardingForm = ({ industries }) => {
                 </SelectContent>
               </Select>
               {errors.industry && (
-                <p className="text-sm text-red-500">
-                  {errors.industry.message}
-                </p>
+                <p className="text-sm text-red-500">{errors.industry.message}</p>
               )}
             </div>
 
@@ -127,10 +125,10 @@ const OnboardingForm = ({ industries }) => {
                 <Select
                   onValueChange={(value) => setValue("subIndustry", value)}
                 >
-                  <SelectTrigger id="subIndustry">
+                  <SelectTrigger id="subIndustry" className="bg-olive-800 text-olive-50">
                     <SelectValue placeholder="Select your specialization" />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="bg-olive-900 text-olive-50">
                     <SelectGroup>
                       <SelectLabel>Specializations</SelectLabel>
                       {selectedIndustry?.subIndustries.map((sub) => (
@@ -158,11 +156,10 @@ const OnboardingForm = ({ industries }) => {
                 max="50"
                 placeholder="Enter years of experience"
                 {...register("experience")}
+                className="bg-olive-800 text-olive-50 border-olive-700"
               />
               {errors.experience && (
-                <p className="text-sm text-red-500">
-                  {errors.experience.message}
-                </p>
+                <p className="text-sm text-red-500">{errors.experience.message}</p>
               )}
             </div>
 
@@ -172,8 +169,9 @@ const OnboardingForm = ({ industries }) => {
                 id="skills"
                 placeholder="e.g., Python, JavaScript, Project Management"
                 {...register("skills")}
+                className="bg-olive-800 text-olive-50 border-olive-700"
               />
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-olive-200">
                 Separate multiple skills with commas
               </p>
               {errors.skills && (
@@ -186,7 +184,7 @@ const OnboardingForm = ({ industries }) => {
               <Textarea
                 id="bio"
                 placeholder="Tell us about your professional background..."
-                className="h-32"
+                className="h-32 bg-olive-800 text-olive-50 border-olive-700"
                 {...register("bio")}
               />
               {errors.bio && (
@@ -194,7 +192,11 @@ const OnboardingForm = ({ industries }) => {
               )}
             </div>
 
-            <Button type="submit" className="w-full" disabled={updateLoading}>
+            <Button
+              type="submit"
+              className="w-full bg-olive-600 hover:bg-olive-500 text-olive-50"
+              disabled={updateLoading}
+            >
               {updateLoading ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />

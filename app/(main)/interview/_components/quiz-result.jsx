@@ -14,46 +14,55 @@ export default function QuizResult({
 
   return (
     <div className="mx-auto">
-      <h1 className="flex items-center gap-2 text-3xl gradient-title">
-        <Trophy className="h-6 w-6 text-yellow-500" />
+      <h1 className="flex items-center gap-2 text-3xl text-[#1b3c2e] font-bold gradient-title">
+        <Trophy className="h-6 w-6 text-lime-500" />
         Quiz Results
       </h1>
 
       <CardContent className="space-y-6">
         {/* Score Overview */}
         <div className="text-center space-y-2">
-          <h3 className="text-2xl font-bold">{result.quizScore.toFixed(1)}%</h3>
-          <Progress value={result.quizScore} className="w-full" />
+          <h3 className="text-2xl font-bold text-[#1b3c2e]">
+            {result.quizScore.toFixed(1)}%
+          </h3>
+          <Progress
+            value={result.quizScore}
+            className="w-full h-3 rounded-lg bg-lime-100"
+            style={{ '--progress-bar-color': '#84cc16' }}
+          />
         </div>
 
         {/* Improvement Tip */}
         {result.improvementTip && (
-          <div className="bg-muted p-4 rounded-lg">
-            <p className="font-medium">Improvement Tip:</p>
-            <p className="text-muted-foreground">{result.improvementTip}</p>
+          <div className="bg-lime-100 p-4 rounded-lg border border-lime-300">
+            <p className="font-medium text-[#1b3c2e]">Improvement Tip:</p>
+            <p className="text-[#4d7c0f]/90">{result.improvementTip}</p>
           </div>
         )}
 
         {/* Questions Review */}
         <div className="space-y-4">
-          <h3 className="font-medium">Question Review</h3>
+          <h3 className="font-medium text-[#1b3c2e]">Question Review</h3>
           {result.questions.map((q, index) => (
-            <div key={index} className="border rounded-lg p-4 space-y-2">
+            <div
+              key={index}
+              className="border border-lime-200 rounded-lg p-4 space-y-2 bg-lime-50"
+            >
               <div className="flex items-start justify-between gap-2">
-                <p className="font-medium">{q.question}</p>
+                <p className="font-medium text-[#1b3c2e]">{q.question}</p>
                 {q.isCorrect ? (
-                  <CheckCircle2 className="h-5 w-5 text-green-500 flex-shrink-0" />
+                  <CheckCircle2 className="h-5 w-5 text-lime-600 flex-shrink-0" />
                 ) : (
                   <XCircle className="h-5 w-5 text-red-500 flex-shrink-0" />
                 )}
               </div>
-              <div className="text-sm text-muted-foreground">
+              <div className="text-sm text-[#4d7c0f]/90">
                 <p>Your answer: {q.userAnswer}</p>
                 {!q.isCorrect && <p>Correct answer: {q.answer}</p>}
               </div>
-              <div className="text-sm bg-muted p-2 rounded">
-                <p className="font-medium">Explanation:</p>
-                <p>{q.explanation}</p>
+              <div className="text-sm bg-lime-100 p-2 rounded border border-lime-200">
+                <p className="font-medium text-[#1b3c2e]">Explanation:</p>
+                <p className="text-[#4d7c0f]/90">{q.explanation}</p>
               </div>
             </div>
           ))}
@@ -62,7 +71,10 @@ export default function QuizResult({
 
       {!hideStartNew && (
         <CardFooter>
-          <Button onClick={onStartNew} className="w-full">
+          <Button
+            onClick={onStartNew}
+            className="w-full bg-lime-600 text-white hover:bg-lime-700"
+          >
             Start New Quiz
           </Button>
         </CardFooter>
